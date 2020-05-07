@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>god like nav/</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pirata+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- <audio id='audio'>
+        <source src="bg.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio> -->
+    <div class="container" id="main">
+        <div class='circle-absolute'></div>
+        <div class="sound-box">
+            <div>
+                <i class="material-icons icon-sb">volume_up</i>
+            </div>
+            <div class='slider'>
+                <input type="range" min='1' max='100' value='50' id='val' class="slider-in">
+                <span class="volume-num">90</span>
+            </div>
+        </div>
+        <div class="sound-box player-count">
+            <i class="material-icons pl-icon">person</i>
+            <span class="pl-num-span">14/32 online!</span>
+        </div>
+        <div class="gang-list">
+            <div class="gang-element" gang-id="3">
+                <div class="gang-el-bg"></div>
+                <div class="vagos-fl">Vagos</div>
+                <div class="gang-num vagos">4/8</div>
+            </div>
+            <div class="gang-element" gang-id="2">
+                <div class="gang-el-bg"></div>
+                <div class="family-fl">Family</div>
+                <div class="gang-num family">7/8</div>
+            </div>
+            <div class="gang-element" gang-id="1">
+                <div class="gang-el-bg"></div>
+                <div class="ballas-fl">Ballas</div>
+                <div class="gang-num ballas">3/8</div>
+            </div>
+            <div class="gang-element" gang-id="4">
+                <div class="gang-el-bg"></div>
+                <div class="triads-fl">Triads</div>
+                <div class="gang-num triads">1/8</div>
+            </div>
+        </div>
+        <div class="ped-box">
+            <div class="arrow left left-a">&#60;&#60;</div>
+            <div class="ped"></div>
+            <div class="arrow right right-a">&#62;&#62;</div>
+
+        </div>
+        
+        <div class="start-btn">
+            Play!
+            <div class='only-vip-info' id='vip-div'>VIP+ ONLY</div>
+        </div>
+    </div>
+    <div class="nots-box">
+        
+    </div>
+    
+
+    <script src="main.js"></script>
+    
+    <script>
+        $('#main').hide();
+    </script>
+    
+    <script>
+        var cashed_value = null
+        var speaker_icon = document.getElementsByClassName('icon-sb')[0];
+        var audioEl = document.getElementById('audio');
+        var slider = document.getElementById("val");
+        var output = document.getElementsByClassName("volume-num")[0];
+
+        output.innerHTML = parseInt(audioEl.volume * 100); 
+        slider.value = parseInt(audioEl.volume * 100);
+
+        slider.oninput = function() {
+            output.innerHTML = slider.value;
+            cashed_value = slider.value;
+            audioEl.volume = cashed_value / 100
+        }
+        
+        speaker_icon.onclick = function() {
+            var cur_icon = speaker_icon.innerHTML;
+            if (cur_icon === 'volume_up') {
+                speaker_icon.innerHTML = 'volume_off'
+                cashed_value = slider.value;
+                slider.value = 0;
+                audioEl.volume = 0.0
+                speaker_icon.style.color = '#ff3333';
+            } else {
+                speaker_icon.innerHTML = 'volume_up'
+                slider.value = cashed_value;
+                audioEl.volume = cashed_value / 100
+                speaker_icon.style.color = 'white';
+            }
+            
+            output.innerHTML = slider.value;
+        }
+    </script>
+</body>
+</html>
